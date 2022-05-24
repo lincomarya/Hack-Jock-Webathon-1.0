@@ -14,7 +14,7 @@
 - Javascript Frameworks like React, Vue, Svelte etc. are allowed.
 - You can host your website on **Netlify** , **Heroku** or **Vercel** [**Optional**]
 
-## How to Submit answer
+## How to Submit
 
 - Fork this repo - **https://github.com/lincomarya/Hack-Jock-Webathon-1.0**
 - Clone your forked repo by using this command : **```git clone [url of the forked repo]```**
@@ -23,6 +23,8 @@
 - Commit your code : **```git commit -m [commit message]```**
 - Push your code by using : **```git push -u origin [branch]```**
 - Create new **pull request**.
+
+**Design Inspirations** : **https://www.reddit.com/r/Frontend/comments/jxta5m/portfolio_megathread/**
 
 ## Note
 

@@ -180,15 +180,15 @@ section .title::after{
 }
 .text-2{ position: relative;
     /* right:100px; */
-    /* left: 100px; */
-    top:200px;
+    left: 5vw;
+    top:150px;
 
 }
 .text-3{
     position: relative;
     /* right:100px; */
-    left: 200px;
-    top:300px;
+    left: 7vw;
+    top:200px;
 }
 .home .home-content .text-1{
     font-size: 27px;
@@ -224,9 +224,7 @@ section .title::after{
 }
 
 /* about section styling */
-.about .title::after{
-    content: "Know more about him";
-}
+
 .about .about-content .left{
     width: 45%;
 }
@@ -315,9 +313,7 @@ section .title::after{
 
 /* skills section styling */
 
-.skills .title::after{
-    content: "Services provided by him";
-}
+
 .skills .skills-content .column{
     width: calc(50% - 30px);
 }
@@ -398,9 +394,7 @@ section .title::after{
 }
 
 /* teams section styling */
-.teams .title::after{
-    content: "what people says about him";
-}
+
 .teams .carousel .card{
     background: #222;
     border-radius: 6px;
@@ -461,9 +455,7 @@ section .title::after{
 }
 
 /* contact section styling */
-.contact .title::after{
-    content: "get in touch with him";
-}
+
 .contact .contact-content .column{
     width: calc(50% - 30px);
 }
@@ -719,7 +711,7 @@ footer span a:hover{
 #likk{
     background-color: rgb(148, 221, 134);
     text-align: center;
-    height:40px;
+    height:40hw;
   
     
 }
@@ -729,5 +721,11 @@ footer span a:hover{
 #pos{
     
     margin-left: 140%;
-    padding: auto;
+    padding-bottom: 60px;
+
+}
+#muy{
+    margin-top: 12em;
+    margin-left:40vw;
+    
 }

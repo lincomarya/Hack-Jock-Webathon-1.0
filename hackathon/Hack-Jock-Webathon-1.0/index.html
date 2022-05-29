@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+           
+        }
+
+        body {
+            width: 100%;
+            max-width: 1400px;
+            display: block;
+            margin: auto;
+            min-height: 100vh;
+            background: #191919;
+            font-family: sans-serif;
+        }
+
+        .navbar {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9;
+            background: #1a1a1a;
+        }
+
+        .link-group {
+            list-style: none;
+            display: flex;
+        }
+
+        .link a {
+            color: #fff;
+            opacity: 0.5;
+            text-decoration: none;
+            text-transform: capitalize;
+            padding: 10px 30px;
+            margin: 0 20px;
+            line-height: 80px;
+            transition: .5s;
+            font-size: 20px;
+        }
+
+        .link a:hover,
+        .link.active a {
+            opacity: 1;
+        }
+
+        .home-section {
+            width: 100%;
+            height: 100vh;
+            padding: 0 150px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .hero-heading {
+            color: black;
+            font-size: 120px;
+            text-transform: capitalize;
+            font-weight: 300;
+        }
+
+        .home-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 50%;
+            object-fit: cover;
+            opacity: 0.2;
+        }
+
+
+        .home-section.active,
+        .project-section.active,
+        .about-section.active,
+        .contact-section.active {
+            position: relative;
+            opacity: 1;
+            z-index: 8;
+        }
+
+        .project-section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 150px 100px 100px;
+            position: fixed;
+            top: 0;
+            transition: 1s;
+            opacity: 0;
+        }
+
+        .project-heading {
+            font-size: 100px;
+            background: #252525;
+            text-transform: capitalize;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #1a1a1a;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-stroke: 8px transparent;
+        }
+
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 100px;
+        }
+
+        .project-card {
+            height: 400px;
+            position: relative;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .project-content {
+            position: relative;
+            padding: 40px;
+            color: #fff;
+            transition: .5s;
+            opacity: 0;
+        }
+
+        .project-title {
+            font-size: 50px;
+            text-transform: capitalize;
+            text-align: center;
+            font-weight: 300;
+        }
+
+        .project-info {
+            margin: 40px;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .project-btn-grp {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+        }
+
+        .project-btn {
+            height: 40px;
+            text-transform: capitalize;
+            font-size: 18px;
+            border: none;
+            background: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .project-btn.live {
+            background: none;
+            border: 2px solid #fff;
+        }
+
+        .project-card:hover .project-img {
+            filter: blur(20px);
+        }
+
+        .project-card:hover .project-content {
+            opacity: 1;
+        }
+
+        <section class="project-section active">.about-section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 150px 100px 0;
+            position: fixed;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .about {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 30% 65%;
+            grid-gap: 40px;
+        }
+
+        .about-img-container {
+            position: relative;
+        }
+
+        .about-info {
+            color: black;
+            opacity: 0.6;
+            font-size: 20px;
+            line-height: 40px;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .download-cv-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            text-transform: capitalize;
+            cursor: pointer;
+            transition: .5s;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .download-cv-btn:hover {
+            background: #000;
+        }
+
+        .timeline {
+            display: block;
+            width: 80%;
+            margin: 150px auto;
+        }
+
+        .timeline .heading {
+            margin-bottom: 150px;
+        }
+
+        .card {
+            width: 45%;
+            padding: 30px;
+            border-radius: 10px;
+            color: #fff;
+            display: block;
+            margin: -80px 0;
+            position: relative;
+            background: #f00;
+        }
+
+        .card:nth-child(even) {
+            margin-left: auto;
+        }
+
+        .card:nth-child(even):before {
+            content: '';
+            position: absolute;
+            left: -15%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 5px solid #191919;
+            border-radius: 50%;
+        }
+
+        .card:nth-child(even):after {
+            content: '';
+            position: absolute;
+            left: -8.5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 7%;
+            height: 2px;
+            background: #fff;
+            z-index: -1;
+        }
+
+        .card:nth-child(odd):before {
+            content: '';
+            position: absolute;
+            right: -13%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 5px solid #191919;
+            border-radius: 50%;
+        }
+
+        .card:nth-child(odd):after {
+            content: '';
+            position: absolute;
+            right: -8.5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 7%;
+            height: 2px;
+            background: #fff;
+            z-index: -1;
+        }
+
+        .card:nth-child(2),
+        .card:nth-child(2):before {
+            background: #ff4f4f;
+        }
+
+        .card:nth-child(3),
+        .card:nth-child(3):before {
+            background: #ffb84f;
+        }
+
+        .card:nth-child(4),
+        .card:nth-child(4):before {
+            background: #3dca5c;
+        }
+
+        .card:nth-child(5),
+        .card:nth-child(5):before {
+            background: #565252;
+        }
+
+        .card:nth-child(6),
+        .card:nth-child(6):before {
+            background: #4fa0ff;
+        }
+
+        .card:nth-child(even) .card-body:before {
+            content: '';
+            position: absolute;
+            left: -12%;
+            top: 0;
+            width: 0px;
+            height: 100%;
+            border: 1px dashed #fff;
+            z-index: -1;
+        }
+
+        .card-title {
+            font-size: 30px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .contact-section {
+            position: absolute;
+            top: 0;
+            opacity: 0;
+            transition: 1s;
+            padding: 100px 150px;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 50px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #fff;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            text-transform: capitalize;
+            color: #fff;
+            padding: 5px 10px;
+        }
+
+        ::placeholder {
+            color: #fff;
+        }
+
+        #msg {
+            height: 280px;
+            resize: none;
+            font-family: sans-serif;
+        }
+
+        .form-submit-btn {
+            background: #ff4f4f;
+            color: #fff;
+            text-transform: capitalize;
+            padding: 15px 40px;
+            display: block;
+            margin: auto;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .map {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            border: 2px solid #fff;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .contact-section.active,
+        .contact-form.active,
+        .form-submit-btn.active,
+        .map.active,
+        .map iframe.active {
+            position: relative;
+            opacity: 1;
+            z-index: 8;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fcfcfc;
+            font-family: sans-serif;
+        }
+
+        .footer-content h3{
+    font-size: 2.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 3rem;
+    align-items: center;
+}
+.footer-content p{
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 14px;
+    color: #cacdd2;
+}
+
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 3rem 0;
+}
+
+.socials li{
+    margin: 0 10px;
+}
+
+.socials a{
+    text-decoration: none;
+    color: #fff;
+    border: 1.1px solid white;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+
+.socials a i{
+    font-size: 1.1rem;
+    width: 20px;
+    transition: color .4s ease;
+}
+
+.socials a:hover i{
+    color: aqua;
+}
+
+    
+
+
+    </style>
+
+
+    <script>
+        const links = document.querySelectorAll('.link');
+        const sections = document.querySelectorAll('section');
+
+        let activeLink = 0;
+
+        links.forEach((link, i) => {
+            link.addEventListener('click', () => {
+                if (activeLink != i) {
+                    links[activeLink].classList.remove('active');
+                    link.classList.add('active');
+                    sections[activeLink].classList.remove('active');
+
+                    setTimeout(() => {
+                        activeLink = i;
+                        sections[i].classList.add('active');
+                    }, 1000);
+                }
+            })
+        })</script>
+
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <ul class="link-group">
+            <li class="link active"><a href="#">home</a></li>
+            <li class="link"><a href="#">projects</a></li>
+            <li class="link"><a href="#">about</a></li>
+            <li class="link"><a href="#">contact</a></li>
+        </ul>
+    </nav>
+    <section class="home-section active">
+        <h1 class="hero-heading">hello, i am <br> Ujjwal Prajapat</h1>
+        <img src="https://wallpapercave.com/wp/TCSCgjV.jpg " class="home-img" alt="">
+    </section>
+    <section class="project-section">
+        <h1 class="project-heading">some of my projects</h1>
+        <div class="project-container">
+            <div class="project-card">
+                <img src="img/project-1.png" class="project-img" alt="">
+                <div class="project-content">
+                    <h1 class="project-title">project 01</h1>
+                    <p class="project-info">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit vitae delectus cumque
+                        repudiandae aliquam optio accusamus natus nobis! Nam, sunt?
+                    </p>
+                    <div class="project-btn-grp">
+                        <button class="project-btn github">github repo</button>
+                        <button class="project-btn live">see live</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="about">
+            <div class="about-img-container">
+                <img src="https://cdn1.vectorstock.com/i/1000x1000/49/40/business-man-working-on-laptop-vector-6724940.jpg
+            " class="about-img" alt="">
+                <button class="download-cv-btn">downlaod cv</button>
+            </div>
+            <p class="about-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates repellat, nihil
+                atque, eligendi omnis culpa provident blanditiis soluta sequi aliquam porro quasi illum perferendis
+                optio consectetur qui expedita perspiciatis magnam!</p>
+        </div>
+    </section>
+
+    <div class="timeline">
+        <h1 class="heading">Education and Experience</h1>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">2000-2002</h1>
+                <p class="card-detail">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto sequi
+                    recusandae laborum ipsam dignissimos nostrum vitae provident officia, consectetur ab accusantium
+                    corrupti exercitationem temporibus repellat non magni cupiditate ea reprehenderit.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">2003-2005</h1>
+                <p class="card-detail">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto sequi
+                    recusandae laborum ipsam dignissimos nostrum vitae provident officia, consectetur ab accusantium
+                    corrupti exercitationem temporibus repellat non magni cupiditate ea reprehenderit.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">2005-2006</h1>
+                <p class="card-detail">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto sequi
+                    recusandae laborum ipsam dignissimos nostrum vitae provident officia, consectetur ab accusantium
+                    corrupti exercitationem temporibus repellat non magni cupiditate ea reprehenderit.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">2006-2008</h1>
+                <p class="card-detail">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto sequi
+                    recusandae laborum ipsam dignissimos nostrum vitae provident officia, consectetur ab accusantium
+                    corrupti exercitationem temporibus repellat non magni cupiditate ea reprehenderit.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">2011-2013</h1>
+                <p class="card-detail">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto sequi
+                    recusandae laborum ipsam dignissimos nostrum vitae provident officia, consectetur ab accusantium
+                    corrupti exercitationem temporibus repellat non magni cupiditate ea reprehenderit.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact-section">
+        <form class="contact-form">
+            <input type="text" name="name" id="name" autocomplete="off" placeholder="name">
+            <input type="text" name="email" id="email" autocomplete="off" placeholder="email">
+            <textarea name="msg" id="msg" placeholder="message" autocomplete="off"></textarea>
+            <button type="submit" class="form-submit-btn">contact</button>
+        </form>
+
+        <div class="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448181.163742937!2d76.81306771991275!3d28.647279935262464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1639489002410!5m2!1sen!2sin"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+</body>
+
+</body>
+<footer>
+    <div class="footer-content">
+
+        <h3>Ujjwal Prajapat</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat earum quaerat at tempora doloremque quis
+            labore quisquam blanditiis fuga alias ut impedit, placeat iure illum perferendis repudiandae quae, aliquid
+            laborum.</p>
+        <ul class="socials">
+            <li><a href="https://www.teahub.io/photos/full/11-115962_facebook-logo-png-transparent-background-facebook-png.png"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://www.pngkey.com/png/full/2-27646_twitter-logo-png-transparent-background-logo-twitter-png.png"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://www.freepngimg.com/thumb/google/62654-google+-icons-computer-google-plus-logo.png"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="https://i.pinimg.com/originals/19/7b/36/197b365922d1ea3aa1a932ff9bbda4a6.png"><i class="fa fa-youtube"></i></a></li>
+            <li><a href="https://cdn.freebiesupply.com/logos/large/2x/linkedin-icon-logo-png-transparent.png"><i class="fa fa-linkedin-square"></i></a></li>
+        </ul>
+</footer>
+
+</html>
